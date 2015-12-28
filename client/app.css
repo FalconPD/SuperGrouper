@@ -1,0 +1,49 @@
+label {
+	font-weight: normal;
+	color: #777777;
+}
+
+.btn {
+	color: #777777;
+}
+
+.list-group {
+	min-height: 1em;
+}
+	
+.list-group li {
+	position: relative;
+	cursor: move;
+}
+
+.panel-heading {
+	cursor: move;
+}
+
+i.js-remove {
+	-webkit-transition: opacity .2s;
+	transition: opacity .2s;
+	opacity: 0;
+	display: block;
+	cursor: pointer;
+	color: #c00;
+	top: 10px;
+	position: absolute;
+	font-style: normal;
+}
+
+.panel-heading i.js-remove {
+	right: 30px;
+}
+
+.list-group-item i.js-remove {
+	right: 10px;
+}
+
+.list-group li:hover i {
+	opacity: 1;
+}
+
+div.panel-heading:hover i {
+	opacity: 1;
+}

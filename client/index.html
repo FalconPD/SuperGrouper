@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Super Grouper</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="app.css" type="text/css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/client.js"></script>
+	<meta name="google-signin-client_id" content="754911704423-r1at4fe4llahgfutdglfdqloe9i751s4.apps.googleusercontent.com">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Super Grouper</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Load Students <span class="caret"></span></a>
+						<ul id="classesDropdown" class="dropdown-menu">
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left" role="form">
+					<div class="form-group">
+						<label for="groupSize">Group Size:</label>
+						<input id="groupSize" type="number" class="form-control" value="4" min="1" step="1" style="width: 5em;">
+						<input id="studentName" type="text" class="form-control" placeholder="John Smith">
+					</div>
+					<button id="addStudent" type="button" class="btn btn-default">Add Student</button>
+					<button id="addGroup" type="button" class="btn btn-default">Add Group</button>
+				</form>
+				<form class="navbar-form navbar-right">
+					<div class="g-signin2" data-onsuccess="onSignIn" data-scope="https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.courses.readonly"></div>
+				</form>
+				<form class="navbar-form navbar-right">
+					<a id="shareToClassroom" href="#"><img width="32px" height="32px" src="https://www.gstatic.com/classroom/logo_square_48.svg"></a>
+				</form>
+			</div>
+		</div>
+	</nav>
+</head>
+<body>
+	<div class="container-fluid">
+		<div id="multi" class="row">
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="loadingModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Loading...</h4>
+				</div>
+				<div class="modal-body">
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<script src="app.js"></script>
+
+</html>

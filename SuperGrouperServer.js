@@ -11,11 +11,6 @@ app.use(PATH, express.static('client'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//app.get('/', function (req, res) {
-//	console.log("Got here");
-//	res.sendFile("client/index.html");
-//});
-
 app.get(PATH + '/load', function (req, res) {
 
 	if (/^[a-z0-9\-]+$/.test(req.query.id))

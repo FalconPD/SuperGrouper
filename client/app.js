@@ -1,3 +1,5 @@
+const MAXGROUPS=1024;
+
 /**
  *  * Randomize array element order in-place.
  *   * Using Durstenfeld shuffle algorithm.
@@ -34,15 +36,28 @@ function refreshGroups() {
 //options, like animals, fruits, places... etc.
 function addGroup() {
 
+	var unusedNumber;
+
 	var groups = refreshGroups();
 	if (! groups.length) {
-		lastGroupNumber = 0;
+		unusedNumber = 1;
 	}
 	else {
-		lastGroupNumber = Number(groups[groups.length - 1].id.replace("Group", ""));
+		//Find the lowest unused number we can
+		//Remember our group numbers start at one
+		for (unusedNumber = 1; unusedNumber < MAXGROUPS; unusedNumber++) {
+			for (i = 0; i < groups.length; i++) {
+				if (Number(groups[i].id.replace("Group", "")) == unusedNumber) {
+					break;
+				}
+			}
+			if (i == groups.length) {
+				break;
+			}
+		}
 	}
-	var groupName = "Group " + (lastGroupNumber + 1);
-	var groupID = "Group" + (lastGroupNumber + 1);
+	var groupName = "Group " + unusedNumber;
+	var groupID = "Group" + unusedNumber;
 
 	$("#multi").append("\
 <div class='col-sm-2 studentGroup'>\
@@ -121,18 +136,22 @@ function loadClass() {
 	});
 
 	request.execute(function(resp) {
-		var students = [];
-
-		for (var i = 0; i < resp.students.length; i++) {
-			//Just use the first name and last initial for privacy 
-			students.push(resp.students[i].profile.name.givenName + " " +
-					resp.students[i].profile.name.familyName.charAt(0));
+		if (resp.error) {
+			error("Unable to load students from class.");
 		}
-		shuffleArray(students); //scramble the students array so the groups are random
-		for (var i = 0; i < students.length; i++) {
-			addStudent(null, students[i]);
-		}
+		else {
+			var students = [];
 
+			for (var i = 0; i < resp.students.length; i++) {
+				//Just use the first name and last initial for privacy 
+				students.push(resp.students[i].profile.name.givenName + " " +
+						resp.students[i].profile.name.familyName.charAt(0));
+			}
+			shuffleArray(students); //scramble the students array so the groups are random
+			for (var i = 0; i < students.length; i++) {
+				addStudent(null, students[i]);
+			}
+		}
 		//hide our loading modal
 		$("#loadingModal").modal("hide");
 	});
@@ -150,9 +169,16 @@ function onSignIn(googleUser) {
 	});
 
         request.execute(function(resp) {
-		for (var i = 0; i < resp.courses.length; i++) {
-			if ( resp.courses[i].courseState = "ACTIVE") {
-				$("#classesDropdown").append("<li><a href='#' id='class" + resp.courses[i].id + "'>" + resp.courses[i].name + "</a></li>");
+		if (resp.error) {
+			var msg;
+
+			error("Unable to get course list. Is this account signed up for Google Classroom?");
+		}
+		else {
+			for (var i = 0; i < resp.courses.length; i++) {
+				if ( resp.courses[i].courseState = "ACTIVE") {
+					$("#classesDropdown").append("<li><a href='#' id='class" + resp.courses[i].id + "'>" + resp.courses[i].name + "</a></li>");
+				}
 			}
 		}
 	});
@@ -171,6 +197,10 @@ function shareToClassroom() {
 	});
 }
 
+function error(msg) {
+	$('body').prepend("<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error: </strong>" + msg + "</div>");
+}
+
 //Event handlers
 $("#addStudent").click(addStudent);
 $("#addGroup").click(addGroup);
@@ -184,3 +214,5 @@ Sortable.create($('#multi')[0], {
 	handle: '.panel-heading'
 });
 
+//Activate all the tooltips
+//$('[data-toggle="tooltip"]').tooltip();

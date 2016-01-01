@@ -20,7 +20,7 @@
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Load Students <span class="caret"></span></a>
+						<a href="#" title="select to create random groups for a class" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Load Students <span class="caret"></span></a>
 						<ul id="classesDropdown" class="dropdown-menu">
 						</ul>
 					</li>
@@ -35,10 +35,10 @@
 					<button id="addGroup" type="button" class="btn btn-default">Add Group</button>
 				</form>
 				<form class="navbar-form navbar-right">
-					<div class="g-signin2" data-onsuccess="onSignIn" data-scope="https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.courses.readonly"></div>
+					<div class="g-signin2" data-onsuccess="onSignIn" data-toggle="tooltip" title="sign in to see your classes" data-scope="https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.courses.readonly"></div>
 				</form>
 				<form class="navbar-form navbar-right">
-					<a id="shareToClassroom" href="#"><img width="32px" height="32px" src="https://www.gstatic.com/classroom/logo_square_48.svg"></a>
+					<a id="shareToClassroom" href="#"><img data-toggle="tooltip" title="save these groups and share to classroom" class="abcRioButton" width="32px" height="32px" src="https://www.gstatic.com/classroom/logo_square_48.svg"></a>
 				</form>
 			</div>
 		</div>
@@ -72,5 +72,16 @@
 </body>
 
 <script src="app.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68578124-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 </html>

@@ -47,3 +47,10 @@ i.js-remove {
 div.panel-heading:hover i {
 	opacity: 1;
 }
+
+#navbar-override a.override-padding {
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	padding-right: 0.7em;
+	padding-left: 0em;
+}

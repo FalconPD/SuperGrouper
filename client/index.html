@@ -4,15 +4,15 @@
 	<title>Super Grouper</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="app.css" type="text/css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="app.css" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="https://apis.google.com/js/client.js"></script>
 	<meta name="google-signin-client_id" content="754911704423-r1at4fe4llahgfutdglfdqloe9i751s4.apps.googleusercontent.com">
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" id="navbar-override">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Super Grouper</a>
@@ -34,12 +34,18 @@
 					<button id="addStudent" type="button" class="btn btn-default">Add Student</button>
 					<button id="addGroup" type="button" class="btn btn-default">Add Group</button>
 				</form>
-				<form class="navbar-form navbar-right">
-					<div class="g-signin2" data-onsuccess="onSignIn" data-toggle="tooltip" title="sign in to see your classes" data-scope="https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.courses.readonly"></div>
-				</form>
-				<form class="navbar-form navbar-right">
-					<a id="shareToClassroom" href="#"><img data-toggle="tooltip" title="save these groups and share to classroom" class="abcRioButton" width="32px" height="32px" src="https://www.gstatic.com/classroom/logo_square_48.svg"></a>
-				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a id="shareToClassroom" href="#" class="override-padding">
+							<img data-toggle="tooltip" title="save these groups and share to classroom" class="abcRioButton" width="32px" height="32px" src="https://www.gstatic.com/classroom/logo_square_48.svg">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="override-padding">
+							<div class="g-signin2" style="height: 32px;" data-onsuccess="onSignIn" data-toggle="tooltip" title="sign in to see your classes" data-scope="https://www.googleapis.com/auth/classroom.rosters.readonly https://www.googleapis.com/auth/classroom.courses.readonly"></div>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</nav>

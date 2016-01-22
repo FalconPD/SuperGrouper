@@ -164,7 +164,7 @@ function onSignIn(googleUser) {
 		root: 'https://classroom.googleapis.com',
 		path: 'v1/courses',
 		params: {
-			pageSize: 10
+			pageSize: 0
 		}
 	});
 
